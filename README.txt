@@ -1,0 +1,1 @@
+This is simple project to experiment with the Grails framework.
