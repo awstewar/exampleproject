@@ -3,6 +3,7 @@ import org.exampleproject.SecUserSecRole;
 import org.exampleproject.SecRole;
 import org.exampleproject.User;
 import org.exampleproject.Friendship;
+import org.exampleproject.Box;
 
 
 class BootStrap {
@@ -32,7 +33,9 @@ class BootStrap {
 		//def friendship = new Friendship(user:andy, friend:mark, accepted:true).save();
 
 		andy.addToFriendships(friend:mark, accepted:true).save();
+		andy.addToFriendships(friend:matt, accepted:true).save();
 
+		andy.addToBoxes(new Box(name:"test")).save()
 
 		/*
 		[jeff: 'Jeff Brown', graeme: 'Graeme Rocher', burt: 'Burt Beckwith', peter: 'Peter Ledbrook'].each { userName, realName ->

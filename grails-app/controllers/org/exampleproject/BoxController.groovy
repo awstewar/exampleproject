@@ -42,17 +42,23 @@ class BoxController {
 	}
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def addUser(Long id) {
+	def findUser(Long id) {
 		def user = lookupPerson();
-		def friend = User.findById(params.userId)
 		def box = Box.findByIdAndAuthor(id, user)
+		
+		def myfriendships = Friendship.findAllByUserOrFriend(user, user)
+
+		def friends_left = myfriendships.friend
+		def friends_right = myfriendships.user
+
+		//make the list distinct
+		def group = (friends_left + friends_right) as Set
 
 		if(!box){
 			return
 		}
 
-		def users = user.friendships*.users 
-		[friends: users]
+		[friends: group, user:user]
 	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])

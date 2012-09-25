@@ -21,7 +21,7 @@ class UserController {
 			return [parseException: true]
 		}
 	}
-	
+
 	private currentUser() {
 		springSecurityService.getCurrentUser()
 	}
