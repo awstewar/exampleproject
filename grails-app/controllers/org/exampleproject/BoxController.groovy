@@ -58,7 +58,21 @@ class BoxController {
 			return
 		}
 
-		[friends: group, user:user]
+		[friends: group, user:user, boxInstance:box]
+	}
+
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def addUser(Long id) {
+		def user = lookupPerson();
+		def box = Box.findByIdAndAuthor(id, user)
+		def friend = User.findById(params.userId)
+
+		if( !box || !friend ){
+			return;
+		}
+
+		box.addToFriends(friend).save()
+		redirect(action: "show", id: box.id)
 	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])

@@ -5,7 +5,7 @@
 	<body>
 		Box: ${ boxInstance.name }
 
-		<a class="btn btn-primary" href="">Add Friends</a>
+		<a class="btn btn-primary" href="${createLink(action: 'findUser', id: boxInstance.id)}">Add Friends</a>
  		<h5>Included Friends:</h5>
 		<ul>
 			<g:each var="friend" in="${boxInstance.friends}">
